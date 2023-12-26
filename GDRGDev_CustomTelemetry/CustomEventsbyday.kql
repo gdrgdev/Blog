@@ -1,7 +1,0 @@
-traces
-| where timestamp >= ago(90d)
-| where isnotempty(customDimensions.eventId)
-| where customDimensions.eventId contains "GDRGDev_CustomTelemetry"
-| extend day = format_datetime(timestamp,"yyyy-MM-dd")
-| summarize count = count() by day, tostring(customDimensions.eventId)
-| order by day desc

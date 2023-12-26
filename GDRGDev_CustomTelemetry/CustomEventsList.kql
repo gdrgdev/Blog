@@ -1,3 +1,0 @@
-traces 
-| where customDimensions.eventId contains "GDRGDev_CustomTelemetry"
-| order by timestamp desc 
