@@ -1,0 +1,33 @@
+{
+  "id": "edf51912-fea1-4b73-97de-446f0da7e93d",
+  "name": "GDRGDev_CustomTelemetry",
+  "publisher": "GDRGDev",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "23.0.0.0",
+  "idRanges": [
+    {
+      "from": 50200,
+      "to": 50202
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "applicationInsightsConnectionString": "InstrumentationKey=<InstrumentationKey>;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/",
+  "runtime": "12.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
