@@ -23,7 +23,7 @@ pageextension 50200 GDGRDDevCustomerListExt extends "Customer List"
                 begin
                     CustomTelemetryDimensions.Add('dimension1', 'dimension value 1');
                     CustomTelemetryDimensions.Add('dimension2', 'dimension value 2');
-                    LogMessage('GDRGDev_CustomTelemetry_01',
+                    Session.LogMessage('GDRGDev_CustomTelemetry_01',
                         'Custom Telemetry Normal SystemMetadata: Spain hour' + FORMAT(Today()) + FORMAT(Time()),
                         Verbosity::Normal,
                         DATACLASSIFICATION::SystemMetadata,
@@ -43,7 +43,7 @@ pageextension 50200 GDGRDDevCustomerListExt extends "Customer List"
                 trigger OnAction()
                 begin
 
-                    LogMessage('GDRGDev_CustomTelemetry_02',
+                    Session.LogMessage('GDRGDev_CustomTelemetry_02',
                         'Custom Telemetry Critical SystemMetadata: Spain hour' + FORMAT(Today()) + FORMAT(Time()),
                         Verbosity::Critical,
                         DATACLASSIFICATION::SystemMetadata,
@@ -63,7 +63,7 @@ pageextension 50200 GDGRDDevCustomerListExt extends "Customer List"
                 trigger OnAction()
                 begin
 
-                    LogMessage('GDRGDev_CustomTelemetry_03',
+                    Session.LogMessage('GDRGDev_CustomTelemetry_03',
                         'Custom Telemetry Error CustomerContent: Spain hour' + FORMAT(Today()) + FORMAT(Time()),
                         Verbosity::Error,
                         DATACLASSIFICATION::CustomerContent, //Not Valid, Not Trace
@@ -83,7 +83,7 @@ pageextension 50200 GDGRDDevCustomerListExt extends "Customer List"
                 trigger OnAction()
                 begin
 
-                    LogMessage('GDRGDev_CustomTelemetry_04',
+                    Session.LogMessage('GDRGDev_CustomTelemetry_04',
                         'Custom Telemetry Error SystemMetadata: Spain hour' + FORMAT(Today()) + FORMAT(Time()),
                         Verbosity::Error,
                         DATACLASSIFICATION::SystemMetadata,
@@ -103,7 +103,7 @@ pageextension 50200 GDGRDDevCustomerListExt extends "Customer List"
                 trigger OnAction()
                 begin
 
-                    LogMessage('GDRGDev_CustomTelemetry_05',
+                    Session.LogMessage('GDRGDev_CustomTelemetry_05',
                         'Custom Telemetry Warning SystemMetadata: Spain hour' + FORMAT(Today()) + FORMAT(Time()),
                         Verbosity::Warning,
                         DATACLASSIFICATION::SystemMetadata,
