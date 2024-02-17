@@ -1,4 +1,4 @@
-# Azure Devops projects and repositories in Business Central Project
+# Project: Azure Devops projects and repositories in Business Central
 Project that allows you to integrate Azure Devops with Business Central, allows you to list organizations, projects and repositories.
 Soon: We will also see commits, participating users and other Azure Devops entities within Business Central.
 
