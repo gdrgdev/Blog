@@ -3,7 +3,6 @@ page 50102 GDRGDevAzDevopsProjects
     Caption = 'Azure Devops Projects';
     PageType = List;
     SourceTable = GDRGDevAzDevopsProject;
-    PromotedActionCategories = 'New,Process,Report,Repositories,Works,Teams,Comentario';
     Editable = false;
     layout
     {
