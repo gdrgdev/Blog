@@ -20,7 +20,7 @@ page 80001 GDRGeolocation
             action(GDRGeoWhereAmI)
             {
                 ApplicationArea = All;
-                Caption = 'Where are you?';
+                Caption = 'Where Am I?';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
@@ -36,7 +36,7 @@ page 80001 GDRGeolocation
             action(GDRGeoWhereAmIImage)
             {
                 ApplicationArea = All;
-                Caption = 'Where are you? (image)';
+                Caption = 'Where Am I? (image)';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
@@ -52,7 +52,7 @@ page 80001 GDRGeolocation
             action(GDRGeoPOI)
             {
                 ApplicationArea = All;
-                Caption = 'Are there points of interest nearby?';
+                Caption = 'Are there points of interest nearby where I am?';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
@@ -68,7 +68,7 @@ page 80001 GDRGeolocation
             action(GDRGeoWeather)
             {
                 ApplicationArea = All;
-                Caption = 'How is the weather?';
+                Caption = 'How is the weather where I am?';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;

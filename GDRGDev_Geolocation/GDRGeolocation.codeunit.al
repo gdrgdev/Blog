@@ -160,7 +160,7 @@ codeunit 80000 "GDRGeolocation"
         GDRGetLocation();
         if GDRGeoSetup."Api Key Azure Maps" <> '' then begin
             Client.DefaultRequestHeaders.Add('subscription-key', GDRGeoSetup."Api Key Azure Maps");
-            url := 'https://atlas.microsoft.com/map/static/png?api-version=1.0&layer=basic&zoom=14&style=main&view=Auto&height=700&Width=700&center=' + txtLongitude + ',' + txtLatitude + '';
+            url := 'https://atlas.microsoft.com/map/static/png?api-version=2022-08-01&layer=basic&zoom=14&style=main&view=Auto&height=700&Width=700&center=' + txtLongitude + ',' + txtLatitude + '';
 
             if not Client.Get(Url, Response) then
                 if Response.IsBlockedByEnvironment then
