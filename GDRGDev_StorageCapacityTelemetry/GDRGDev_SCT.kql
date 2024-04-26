@@ -1,0 +1,46 @@
+traces
+| where timestamp > ago(3h) 
+| where customDimensions has 'ALGDRST_001' 
+| where customDimensions.eventId == 'ALGDRST_001' 
+| where customDimensions.alObjectId > 0 
+| project aadTenantId = customDimensions.aadTenantId
+, timestamp = timestamp
+, eventId = customDimensions.eventId
+, message = message
+, alEnvProductionCount = customDimensions.alEnvProductionCount
+, alEnvSandboxCount = customDimensions.alEnvSandboxCount
+, alKBdefault = customDimensions.alKBdefault
+, aluserLicenses = customDimensions.aluserLicenses
+, alKBadditionalCapacity = customDimensions.alKBadditionalCapacity
+, alKBtotal = customDimensions.alKBtotal
+, environmentName = customDimensions.environmentName
+, environmentType = customDimensions.environmentType
+
+traces
+| where timestamp > ago(3h) 
+| where customDimensions has 'ALGDRST_002' 
+| where customDimensions.eventId == 'ALGDRST_002' 
+| where customDimensions.alObjectId > 0 
+| project aadTenantId = customDimensions.aadTenantId
+, timestamp = timestamp
+, eventId = customDimensions.eventId
+, message = message
+, alKBcurrent = customDimensions.alKBcurrent
+, alKBtotal = customDimensions.alKBtotal
+, environmentName = customDimensions.environmentName
+, environmentType = customDimensions.environmentType
+
+
+traces
+| where timestamp > ago(3h) 
+| where customDimensions has 'ALGDRST_003' 
+| where customDimensions.eventId == 'ALGDRST_003' 
+| where customDimensions.alObjectId > 0 
+| project aadTenantId = customDimensions.aadTenantId
+, timestamp = timestamp
+, eventId = customDimensions.eventId
+, message = message
+, alKBcurrent = customDimensions.alKBcurrent
+, alKBtotal = customDimensions.alKBtotal
+, environmentName = customDimensions.environmentName
+, environmentType = customDimensions.environmentType
