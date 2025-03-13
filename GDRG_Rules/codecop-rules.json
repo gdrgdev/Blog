@@ -1,0 +1,19 @@
+{
+    "rules": {
+        "AA0005": {
+            "severity": "error",
+            "description": "Documentation requirements",
+            "check": "XML documentation required for objects and public members"
+        },
+        "AA0008": {
+            "severity": "error",
+            "description": "Naming conventions",
+            "check": "Use PascalCase for objects, camelCase for parameters"
+        },
+        "AA0072": {
+            "severity": "error", 
+            "description": "Variable initialization",
+            "check": "Variables must be initialized before use"
+        }
+    }
+}
