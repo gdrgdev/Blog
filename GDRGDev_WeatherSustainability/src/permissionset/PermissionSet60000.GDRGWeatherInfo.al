@@ -1,0 +1,47 @@
+permissionset 60000 GDRGWeatherInfo
+{
+    Caption = 'GDRGWeatherInfo', Locked = true;
+    Assignable = true;
+    Permissions = tabledata "GDRG API Connection Setup" = RIMD,
+        table "GDRG API Connection Setup" = X,
+        codeunit "GDRG API Connection Manager" = X,
+        page "GDRG API Connection Setup" = X,
+        tabledata "GDRG API Call Log" = RIMD,
+        table "GDRG API Call Log" = X,
+        page "GDRG API Call Log" = X,
+        codeunit "GDRG JSON Helper" = X,
+        tabledata "GDRG Zip Code Info" = RIMD,
+        table "GDRG Zip Code Info" = X,
+        codeunit "GDRG Zip Code Manager" = X,
+        page "GDRG Zip Code Info List" = X,
+        page "GDRG Zip Code Input" = X,
+        tabledata "GDRG Weather Data" = RIMD,
+        table "GDRG Weather Data" = X,
+        codeunit "GDRG Weather Data Manager" = X,
+        codeunit "GDRG Weather Helper" = X,
+        page "GDRG Weather Data Input" = X,
+        page "GDRG Weather Data List" = X,
+        tabledata "GDRG Assistant Session" = RIMD,
+        table "GDRG Assistant Session" = X,
+        codeunit "GDRG Assistant Session Manager" = X,
+        page "GDRG Assistant Session List" = X,
+        page "GDRG Assistant Session Input" = X,
+
+        tabledata "GDRG Order Climate Risk" = RIMD,
+        table "GDRG Order Climate Risk" = X,
+        page "GDRG Order Climate Analysis" = X,
+        codeunit "GDRG Climate Risk Calculator" = X,
+        codeunit "GDRG Climate Risk Manager" = X,
+
+        tabledata Customer = M,
+        tabledata Vendor = M,
+        tabledata "Ship-to Address" = M,
+        tabledata "Sales Header" = RM,
+        tabledata "Purchase Header" = RM,
+        tabledata "Company Information" = R,
+        page "Customer Card" = X,
+        page "Vendor Card" = X,
+        page "Ship-to Address" = X,
+        page "Sales Order" = X,
+        page "Purchase Order" = X;
+}
