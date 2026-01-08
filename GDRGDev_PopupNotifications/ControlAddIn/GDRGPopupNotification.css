@@ -1,0 +1,119 @@
+/* GDRG Popup Notification - CSS Styles */
+/* Modal appears centered over entire interface */
+
+/* Overlay - Covers entire screen */
+.gdrg-notification-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto !important;
+}
+
+.gdrg-notification-overlay.show {
+    opacity: 1;
+}
+
+/* Modal container */
+.gdrg-notification-modal {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.gdrg-notification-overlay.show .gdrg-notification-modal {
+    transform: scale(1);
+}
+
+/* Header */
+.gdrg-notification-header {
+    padding: 24px 24px 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.gdrg-notification-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #323130;
+}
+
+/* Body */
+.gdrg-notification-body {
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.gdrg-notification-body p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #605e5c;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Footer */
+.gdrg-notification-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Accept button */
+.gdrg-btn-accept {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.gdrg-btn-accept:hover {
+    background-color: #106ebe;
+}
+
+.gdrg-btn-accept:active {
+    background-color: #005a9e;
+}
+
+.gdrg-btn-accept:focus {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .gdrg-notification-modal {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .gdrg-notification-header,
+    .gdrg-notification-body,
+    .gdrg-notification-footer {
+        padding: 16px;
+    }
+}
