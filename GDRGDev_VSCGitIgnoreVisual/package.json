@@ -1,0 +1,66 @@
+{
+  "name": "gitignore-visual",
+  "displayName": "GitIgnore Visual Indicator",
+  "description": "Visual indicators for files and folders ignored by .gitignore",
+  "version": "0.1.0",
+  "publisher": "gerardo-renteria",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "gitignore",
+    "git",
+    "visual",
+    "indicator",
+    "decoration"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "GitIgnore Visual",
+      "properties": {
+        "gitignoreVisual.badgeIcon": {
+          "type": "string",
+          "default": "⦻",
+          "description": "Icon/emoji to show on ignored items"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "gitignoreVisual.refresh",
+        "title": "GitIgnore Visual: Refresh"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "ignore": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdrgdev/Blog/tree/main/GDRGDev_VSCGitIgnoreVisual"
+  }
+}
