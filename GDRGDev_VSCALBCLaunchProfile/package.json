@@ -1,0 +1,96 @@
+{
+  "name": "bc-launch-profile",
+  "displayName": "BC Launch Profile",
+  "description": "Quick switch between Business Central environments using bclaunchprofiles.json",
+  "version": "1.0.0",
+  "publisher": "gerardo-renteria",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "business-central",
+    "dynamics-365",
+    "al",
+    "launch",
+    "profiles",
+    "environment",
+    "bc",
+    "development",
+    "sandbox",
+    "tenant",
+    "configuration",
+    "productivity",
+    "navision",
+    "erp",
+    "microsoft",
+    "consultant",
+    "multi-tenant",
+    "workspace"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bcLaunchProfileSwitcher.applyProfile",
+        "title": "Apply BC Launch Profile"
+      },
+      {
+        "command": "bcLaunchProfileSwitcher.duplicateAndApplyProfile",
+        "title": "Duplicate Configuration & Apply BC Profile"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "bcLaunchProfileSwitcher.applyProfile",
+          "when": "resourceFilename == launch.json"
+        },
+        {
+          "command": "bcLaunchProfileSwitcher.duplicateAndApplyProfile",
+          "when": "resourceFilename == launch.json"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceFilename == launch.json",
+          "command": "bcLaunchProfileSwitcher.applyProfile",
+          "group": "bcLaunch@1"
+        },
+        {
+          "when": "resourceFilename == launch.json",
+          "command": "bcLaunchProfileSwitcher.duplicateAndApplyProfile",
+          "group": "bcLaunch@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdrgdev/Blog/tree/main/GDRGDev_VSCALBCLaunchProfile"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  }
+}
