@@ -27,6 +27,3 @@ Aquí encontrarás ejemplos prácticos, extensiones y utilidades para el desarro
 ☕ Apóyame
 <br>
 Si me invitas a un café, seguro que me ayuda a mantenerme despierto y seguir contribuyendo 🙂
-<a href="https://www.buymeacoffee.com/gdrenteria" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 109px !important;">
-</a>
