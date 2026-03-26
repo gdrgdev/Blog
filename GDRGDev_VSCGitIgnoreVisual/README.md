@@ -71,7 +71,11 @@ MIT License - Gerardo Rentería
 ## 🤝 Contributions
 
 Contributions welcome! Visit the [source code](https://github.com/gdrgdev/Blog/tree/main/GDRGDev_VSCGitIgnoreVisual) on my blog.
-
+<br>
+If you buy me a coffee, I'm sure it will help me stay awake and keep contributing 🙂
+<a href="https://www.buymeacoffee.com/gdrenteria" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 109px !important;">
+</a>
 ---
 
 ⭐ **¿Te resultó útil?** Dale una estrella al [repositorio](https://github.com/gdrgdev/Blog)!
