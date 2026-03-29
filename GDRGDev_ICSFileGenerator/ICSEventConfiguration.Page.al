@@ -1,4 +1,4 @@
-page 50104 "ICS Event Configuration"
+page 80000 "ICS Event Configuration"
 {
     PageType = Card;
     Caption = 'Configure Calendar Event';
@@ -242,7 +242,7 @@ page 50104 "ICS Event Configuration"
             Error(EndTimeBeforeStartErr);
     end;
 
-    procedure LoadEventData(var SourceEventBuffer: Record "ICS Event Data Buffer")
+    procedure LoadEventData(SourceEventBuffer: Record "ICS Event Data Buffer")
     begin
         Rec.Reset();
         Rec.DeleteAll(false);

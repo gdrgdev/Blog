@@ -1,4 +1,4 @@
-codeunit 50102 "ICS Business Helper"
+codeunit 80001 "ICS Business Helper"
 {
     Permissions = tabledata "Customer" = R,
     tabledata "User Setup" = R;

@@ -1,4 +1,4 @@
-pageextension 50121 "Customer Card ICS Export" extends "Customer Card"
+pageextension 80000 "Customer Card ICS Export" extends "Customer Card"
 {
     actions
     {

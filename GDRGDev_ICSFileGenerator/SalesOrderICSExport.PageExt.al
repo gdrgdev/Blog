@@ -1,4 +1,4 @@
-pageextension 50122 "Sales Order ICS Export" extends "Sales Order"
+pageextension 80001 "Sales Order ICS Export" extends "Sales Order"
 {
     layout
     {

@@ -1,4 +1,4 @@
-codeunit 50100 ICSFileGenerator
+codeunit 80000 ICSFileGenerator
 {
     SingleInstance = true;
     Subtype = Normal;
@@ -26,14 +26,15 @@ codeunit 50100 ICSFileGenerator
     /// <param name="TempBlob">Output: Generated ICS file as blob</param>
     /// <param name="FileName">Output: Suggested filename</param>
     /// <returns>True if successful, false otherwise</returns>
-    procedure GenerateICSBlob(EventData: Record "ICS Event Data Buffer"; var TempBlob: Codeunit "Temp Blob"; var FileName: Text): Boolean
+    local procedure GenerateICSBlob(EventData: Record "ICS Event Data Buffer"; var TempBlob: Codeunit "Temp Blob"; var FileName: Text): Boolean
     var
         ICSContent: Text;
+        GenerationFailedMsg: Label 'Failed to generate ICS content.';
     begin
         ICSContent := BuildICSContent(EventData);
 
         if ICSContent = '' then begin
-            Message('Failed to generate ICS content.');
+            Message(GenerationFailedMsg);
             exit(false);
         end;
 
@@ -49,18 +50,19 @@ codeunit 50100 ICSFileGenerator
     /// <param name="TempBlob">ICS file blob to download</param>
     /// <param name="FileName">Filename for download</param>
     /// <returns>True if successful</returns>
-    procedure DownloadICSFile(var TempBlob: Codeunit "Temp Blob"; FileName: Text): Boolean
+    local procedure DownloadICSFile(var TempBlob: Codeunit "Temp Blob"; FileName: Text): Boolean
     var
         InStream: InStream;
+        ExportSuccessMsg: Label 'Calendar event exported successfully as "%1"!';
     begin
         TempBlob.CreateInStream(InStream);
         DownloadFromStream(InStream, '', '', '', FileName);
-        Message('Calendar event exported successfully as "%1"!', FileName);
+        Message(ExportSuccessMsg, FileName);
 
         exit(true);
     end;
 
-    procedure BuildICSContent(EventData: Record "ICS Event Data Buffer"): Text
+    local procedure BuildICSContent(EventData: Record "ICS Event Data Buffer"): Text
     var
         StringBuilder: TextBuilder;
     begin
@@ -90,12 +92,13 @@ codeunit 50100 ICSFileGenerator
     begin
         StringBuilder.AppendLine('BEGIN:VEVENT');
         StringBuilder.AppendLine('UID:' + DelChr(EventData.UID, '<>', '{}'));
+        StringBuilder.AppendLine('DTSTAMP:' + GetICSDateTimeString(EventData."Created DateTime"));
 
         if EventData.Organizer <> '' then
-            StringBuilder.AppendLine('ORGANIZER:' + EventData.Organizer);
+            StringBuilder.AppendLine('ORGANIZER:MAILTO:' + EventData.Organizer);
 
         if EventData.Location <> '' then
-            StringBuilder.AppendLine('LOCATION:' + EventData.Location);
+            StringBuilder.AppendLine('LOCATION:' + EscapeICSText(EventData.Location));
 
         if EventData."All Day Event" then begin
             StringBuilder.AppendLine('DTSTART;VALUE=DATE:' + GetICSDateString(EventData."Start DateTime"));
@@ -105,10 +108,10 @@ codeunit 50100 ICSFileGenerator
             StringBuilder.AppendLine('DTEND:' + GetICSDateTimeString(EventData."End DateTime"));
         end;
 
-        StringBuilder.AppendLine('SUMMARY:' + EventData.Summary);
+        StringBuilder.AppendLine('SUMMARY:' + EscapeICSText(EventData.Summary));
 
         if EventData.Description <> '' then begin
-            StringBuilder.AppendLine('DESCRIPTION:' + EventData.Description);
+            StringBuilder.AppendLine('DESCRIPTION:' + EscapeICSText(EventData.Description));
             StringBuilder.AppendLine('X-ALT-DESC;FMTTYPE=text/html:' + GetHtmlDescription(EventData.Description));
         end;
 
@@ -122,13 +125,13 @@ codeunit 50100 ICSFileGenerator
         exit(StringBuilder.ToText());
     end;
 
-    procedure GenerateFileName(Summary: Text; CreatedDateTime: DateTime): Text
+    local procedure GenerateFileName(Summary: Text; CreatedDateTime: DateTime): Text
     var
         CleanSummary: Text;
     begin
         CleanSummary := SanitizeFileName(Summary);
 
-        exit(CleanSummary + '-' + Format(CreatedDateTime, 0, '<Year4><Month,2><Day,2>T<Hours24><Minutes,2><Seconds,2>') + '.ics');
+        exit(CleanSummary + '-' + Format(CreatedDateTime, 0, '<Year4><Month,2><Day,2>T<Hours24,2><Minutes,2><Seconds,2>') + '.ics');
     end;
 
     local procedure SanitizeFileName(Input: Text): Text
@@ -141,7 +144,7 @@ codeunit 50100 ICSFileGenerator
         CleanText := DelChr(Input, '=', '/\:*?"<>|[](){}$%^&+=`~');
 
         while StrPos(CleanText, '  ') > 0 do
-            CleanText := DelChr(CleanText, '=', ' ');
+            CleanText := DelStr(CleanText, StrPos(CleanText, '  '), 1);
         CleanText := DelChr(CleanText, '<>', ' ');
 
         CleanText := ConvertStr(CleanText, ' ', '-');
@@ -165,7 +168,7 @@ codeunit 50100 ICSFileGenerator
         exit('calendar-event');
     end;
 
-    procedure WriteToStream(ICSContent: Text; var TempBlob: Codeunit "Temp Blob")
+    local procedure WriteToStream(ICSContent: Text; var TempBlob: Codeunit "Temp Blob")
     var
         OutStream: OutStream;
     begin
@@ -173,7 +176,7 @@ codeunit 50100 ICSFileGenerator
         OutStream.WriteText(ICSContent);
     end;
 
-    procedure GetHtmlDescription(Description: Text): Text
+    local procedure GetHtmlDescription(Description: Text): Text
     var
         Regex: Codeunit Regex;
         HtmlAppointDescription: Text;
@@ -183,7 +186,22 @@ codeunit 50100 ICSFileGenerator
         exit('<html><body>' + HtmlAppointDescription + '</body></html>');
     end;
 
-    procedure GetICSDateTimeString(DateTimeValue: DateTime): Text
+    local procedure EscapeICSText(InputText: Text): Text
+    var
+        Regex: Codeunit Regex;
+        EscapedText: Text;
+    begin
+        EscapedText := InputText;
+        EscapedText := Regex.Replace(EscapedText, '\\', '\\');
+        EscapedText := Regex.Replace(EscapedText, ',', '\,');
+        EscapedText := Regex.Replace(EscapedText, ';', '\;');
+        EscapedText := Regex.Replace(EscapedText, '\r\n', '\n');
+        EscapedText := Regex.Replace(EscapedText, '\n', '\n');
+        EscapedText := Regex.Replace(EscapedText, '\r', '\n');
+        exit(EscapedText);
+    end;
+
+    local procedure GetICSDateTimeString(DateTimeValue: DateTime): Text
     var
         TimeZone: Codeunit "Time Zone";
         TimeZoneOffset: Duration;
@@ -192,10 +210,10 @@ codeunit 50100 ICSFileGenerator
         TimeZoneOffset := TimeZone.GetTimezoneOffset(DateTimeValue);
         UTCDateTime := DateTimeValue - TimeZoneOffset;
 
-        exit(Format(UTCDateTime, 0, '<Year4><Month,2><Day,2>T<Hours24><Minutes,2><Seconds,2>Z'));
+        exit(Format(UTCDateTime, 0, '<Year4><Month,2><Day,2>T<Hours24,2><Minutes,2><Seconds,2>Z'));
     end;
 
-    procedure GetICSDateString(DateTimeValue: DateTime): Text
+    local procedure GetICSDateString(DateTimeValue: DateTime): Text
     begin
         exit(Format(DateTimeValue, 0, '<Year4><Month,2><Day,2>'));
     end;

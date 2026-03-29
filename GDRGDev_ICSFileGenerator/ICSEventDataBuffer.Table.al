@@ -1,4 +1,4 @@
-table 50110 "ICS Event Data Buffer"
+table 80000 "ICS Event Data Buffer"
 {
     DataClassification = SystemMetadata;
     Caption = 'ICS Event Data Buffer';

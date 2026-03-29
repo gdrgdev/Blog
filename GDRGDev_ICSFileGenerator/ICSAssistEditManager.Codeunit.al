@@ -1,4 +1,4 @@
-codeunit 50103 "ICS Assist Edit Manager"
+codeunit 80002 "ICS Assist Edit Manager"
 {
     Access = Public;
 
