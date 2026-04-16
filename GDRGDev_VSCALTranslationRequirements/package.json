@@ -1,0 +1,99 @@
+{
+  "name": "al-translation-requirements",
+  "displayName": "AL Translation Requirements",
+  "description": "Enforce required translation files and manage equivalent languages in AL extensions",
+  "version": "1.0.0",
+  "publisher": "gerardo-renteria",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdrgdev/Blog/tree/main/GDRGDev_VSCALTranslationRequirements"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "AL",
+    "Business Central",
+    "Translation",
+    "XLIFF",
+    "Localization"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/app.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "alTranslationRequirements.validate",
+        "title": "AL Translation Requirements: Validate"
+      },
+      {
+        "command": "alTranslationRequirements.syncEquivalents",
+        "title": "AL Translation Requirements: Sync Equivalents"
+      }
+    ],
+    "configuration": {
+      "title": "AL Translation Requirements",
+      "properties": {
+        "alTranslationRequirements.required": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "description": "Required language codes (e.g., ['es-ES', 'fr-FR'])",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alTranslationRequirements.equivalents": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "markdownDescription": "**Equivalent language mappings** - Creates copies of translation files with different language codes.\n\n**How to use:**\n1. Click **\"Edit in settings.json\"** below\n2. Add your mappings like this example:\n```json\n\"alTranslationRequirements.equivalents\": [\n  {\n    \"base\": \"es-ES\",\n    \"equivalent\": \"es-MX\"\n  },\n  {\n    \"base\": \"fr-FR\",\n    \"equivalent\": \"fr-CA\"\n  }\n]\n```\n\n**What it does:** Copies `es-ES.xlf` → `es-MX.xlf` (and updates the target language).\n\n**Common use cases:**\n- Spanish variants: `es-ES` → `es-MX`, `es-ES` → `es-AR`\n- French variants: `fr-FR` → `fr-CA`, `fr-FR` → `fr-BE`\n- English variants: `en-US` → `en-GB`, `en-US` → `en-AU`",
+          "items": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "string",
+                "description": "Source language code (must exist in Required list)",
+                "examples": ["es-ES", "fr-FR", "en-US"]
+              },
+              "equivalent": {
+                "type": "string",
+                "description": "Target language code (will be created from base)",
+                "examples": ["es-MX", "fr-CA", "en-GB"]
+              }
+            },
+            "required": ["base", "equivalent"]
+          }
+        },
+        "alTranslationRequirements.decoration.backgroundColor": {
+          "type": "string",
+          "default": "#F0D269",
+          "scope": "resource",
+          "description": "Background color for trans-units with missing or empty target (hex format)"
+        },
+        "alTranslationRequirements.decoration.enabled": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Enable/disable decoration for missing translations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
