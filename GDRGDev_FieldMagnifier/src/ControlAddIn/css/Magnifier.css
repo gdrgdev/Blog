@@ -1,0 +1,39 @@
+.gdrg-magnifier {
+    position: fixed;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    pointer-events: none;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.2s ease-in;
+    max-width: 600px;
+    word-wrap: break-word;
+}
+
+.gdrg-magnifier-label {
+    font-size: 11px;
+    opacity: 0.8;
+    font-weight: 400;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gdrg-magnifier-value {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
