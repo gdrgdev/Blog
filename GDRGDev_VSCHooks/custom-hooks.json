@@ -1,0 +1,25 @@
+{
+    "hooks": {
+        "SessionStart": [
+            {
+                "type": "command",
+                "windows": "powershell -ExecutionPolicy Bypass -File log-session.ps1",
+                "command": "echo '{\"continue\":true}'",
+                "cwd": ".github/hooks/session-start",
+                "env": {
+                    "HOOK_AUTHOR": "GDRGDev"
+                },
+                "timeout": 20
+            }
+        ],
+        "PreCompact": [
+            {
+                "type": "command",
+                "windows": "powershell -ExecutionPolicy Bypass -File reinject-profile.ps1",
+                "command": "echo '{\"continue\":true}'",
+                "cwd": ".github/hooks/session-start",
+                "timeout": 10
+            }
+        ]
+    }
+}
