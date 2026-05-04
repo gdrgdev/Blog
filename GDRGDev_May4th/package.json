@@ -1,0 +1,46 @@
+{
+  "name": "may-the-fourth",
+  "displayName": "May the 4th Be With You ⚔️",
+  "description": "Celebrate Star Wars Day! On May 4th, your workspace gets its own Opening Crawl. A long time ago, in a repository far, far away...",
+  "version": "0.1.0",
+  "publisher": "gerardo-renteria",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "keywords": ["star wars", "may the fourth", "fun", "opening crawl", "easter egg", "humor"],
+  "galleryBanner": { "color": "#000000", "theme": "dark" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdrgdev/Blog/tree/main/GDRGDev_May4th"
+  },
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mayTheFourth.showCrawl",
+        "title": "Show Opening Crawl ⚔️",
+        "category": "May the 4th"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "eslint": "^8.x",
+    "typescript": "^5.3.0"
+  }
+}
