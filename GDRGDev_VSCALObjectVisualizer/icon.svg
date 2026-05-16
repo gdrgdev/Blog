@@ -1,0 +1,42 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background: dark rounded square (VS Code dark theme feel) -->
+  <rect width="128" height="128" rx="18" fill="#1e2030"/>
+
+  <!-- ===== TOP-LEFT: Table (blue) ===== -->
+  <rect x="8" y="8" width="52" height="52" rx="10" fill="#3B82F6"/>
+  <!-- Table: outer border + vertical divider + horizontal divider -->
+  <rect x="18" y="21" width="32" height="26" rx="2" fill="none" stroke="white" stroke-width="2.5"/>
+  <line x1="34" y1="21" x2="34" y2="47" stroke="white" stroke-width="2"/>
+  <line x1="18" y1="32" x2="50" y2="32" stroke="white" stroke-width="2"/>
+
+  <!-- ===== TOP-RIGHT: Page (green) ===== -->
+  <rect x="68" y="8" width="52" height="52" rx="10" fill="#10B981"/>
+  <!-- Document with fold corner (right-angle notch at top-right) -->
+  <path d="M80 18 H103 V24 H109 V50 H80 Z" fill="white" opacity="0.95"/>
+  <line x1="103" y1="18" x2="109" y2="24" stroke="#0d9e75" stroke-width="1.5"/>
+  <!-- Text lines inside document -->
+  <line x1="85" y1="30" x2="104" y2="30" stroke="#0d9e75" stroke-width="2"/>
+  <line x1="85" y1="36" x2="104" y2="36" stroke="#0d9e75" stroke-width="2"/>
+  <line x1="85" y1="42" x2="97" y2="42" stroke="#0d9e75" stroke-width="2"/>
+
+  <!-- ===== BOTTOM-LEFT: Codeunit (amber) ===== -->
+  <rect x="8" y="68" width="52" height="52" rx="10" fill="#F59E0B"/>
+  <!-- 4-tooth gear: teeth first, then circle, then hole (all merge into white gear shape) -->
+  <rect x="31" y="79" width="6" height="9" rx="2" fill="white"/>
+  <rect x="31" y="100" width="6" height="9" rx="2" fill="white"/>
+  <rect x="19" y="91" width="9" height="6" rx="2" fill="white"/>
+  <rect x="40" y="91" width="9" height="6" rx="2" fill="white"/>
+  <circle cx="34" cy="94" r="10" fill="white"/>
+  <circle cx="34" cy="94" r="4.5" fill="#F59E0B"/>
+
+  <!-- ===== BOTTOM-RIGHT: Stats/Report (orange) ===== -->
+  <rect x="68" y="68" width="52" height="52" rx="10" fill="#F97316"/>
+  <!-- Bar chart: 3 bars of increasing height -->
+  <rect x="76" y="103" width="9" height="10" rx="2" fill="white" opacity="0.95"/>
+  <rect x="89" y="90" width="9" height="23" rx="2" fill="white" opacity="0.95"/>
+  <rect x="102" y="96" width="9" height="17" rx="2" fill="white" opacity="0.95"/>
+  <!-- Baseline -->
+  <line x1="74" y1="113" x2="114" y2="113" stroke="white" stroke-width="2" opacity="0.7"/>
+
+</svg>

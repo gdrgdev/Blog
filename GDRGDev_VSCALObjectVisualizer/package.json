@@ -1,0 +1,139 @@
+{
+  "name": "al-object-visualizer",
+  "displayName": "AL Object Visualizer",
+  "description": "Color-coded badges for AL objects. Auto-detects object types (table, page, codeunit, etc.) with customizable Unicode symbols and theme colors",
+  "version": "1.0.0",
+  "publisher": "gerardo-renteria",
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdrgdev/Blog/tree/main/GDRGDev_VSCALObjectVisualizer"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Visualization"
+  ],
+  "keywords": [
+    "AL",
+    "Business Central",
+    "Dynamics 365",
+    "Object Types",
+    "Visualization"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*.al"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "alObjectStats",
+          "name": "AL Object Visualizer",
+          "type": "tree",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "alObjectVisualizer.refreshStats",
+        "category": "AL Object Visualizer",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "alObjectVisualizer.showFiles",
+        "title": "Show Files of Type"
+      },
+      {
+        "command": "alObjectVisualizer.filterObjects",
+        "category": "AL Object Visualizer",
+        "title": "Filter Objects",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "alObjectVisualizer.clearFilter",
+        "category": "AL Object Visualizer",
+        "title": "Clear Filter",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "alObjectVisualizer.showFiles",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "alObjectVisualizer.filterObjects",
+          "when": "view == alObjectStats",
+          "group": "navigation@1"
+        },
+        {
+          "command": "alObjectVisualizer.clearFilter",
+          "when": "view == alObjectStats",
+          "group": "navigation@2"
+        },
+        {
+          "command": "alObjectVisualizer.refreshStats",
+          "when": "view == alObjectStats",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AL Object Visualizer",
+      "properties": {
+        "alObjectVisualizer.folderGroupingDepth": {
+          "type": "number",
+          "default": 0,
+          "enum": [0, 1, 2, 3],
+          "enumDescriptions": [
+            "No grouping - flat list by object type",
+            "Group by first folder level",
+            "Group by second folder level",
+            "Group by third folder level"
+          ],
+          "description": "Folder depth for grouping objects in the tree view"
+        },
+        "alObjectVisualizer.objectTypes": {
+          "type": "object",
+          "default": {},
+          "description": "Object type configurations. Each key is the object type keyword (lowercase), value is an object with 'color' (hex) and 'badge' (unicode character)",
+          "patternProperties": {
+            ".*": {
+              "type": "object",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Hex color code"
+                },
+                "badge": {
+                  "type": "string",
+                  "description": "Unicode badge character"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
