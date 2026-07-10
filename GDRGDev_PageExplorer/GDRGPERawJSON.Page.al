@@ -1,5 +1,4 @@
-﻿#pragma warning disable LC0034
-page 97821 "GDRGPE Raw JSON"
+﻿page 97821 "GDRGPE Raw JSON"
 {
     ApplicationArea = All;
     Caption = 'Page Summary JSON';
